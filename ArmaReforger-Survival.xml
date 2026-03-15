@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<Container version="1">
+    <Name>BrokkrForgemaster-Reforger-Survival</Name>
+
+    <Repository>ghcr.io/brokkrforgemaster/reforger-survival-server</Repository>
+    <Registry>https://github.com/BrokkrForgemaster/reforger-survival-server</Registry>
+
+    <Network>bridge</Network>
+    <MyIP/>
+    <Shell>sh</Shell>
+    <Privileged>false</Privileged>
+
+    <Support>https://github.com/BrokkrForgemaster/reforger-survival-server/issues</Support>
+    <Project>https://github.com/BrokkrForgemaster/reforger-survival-server</Project>
+
+    <Overview>
+Custom Arma Reforger survival server maintained by BrokkrForgemaster.
+
+Default configuration includes:
+
+• Chernarus Minus map
+• Basic Survival Mod
+• DayZ-style survival gameplay
+
+This container automatically:
+
+• installs SteamCMD
+• downloads the Reforger dedicated server
+• downloads workshop mods
+• launches the server
+
+First startup may take several minutes.
+
+Restart the container to update the server.
+
+Configuration files are located in:
+
+/serverdata/serverfiles/config
+/serverdata/serverfiles/profile
+    </Overview>
+
+    <Category>GameServers:</Category>
+
+    <Icon>https://raw.githubusercontent.com/BrokkrForgemaster/UnraidTemplates/main/icons/reforger-survival.png</Icon>
+
+    <ExtraParams>--restart unless-stopped</ExtraParams>
+
+    <!-- STORAGE -->
+
+    <Config Name="SteamCMD Path"
+        Target="/serverdata/steamcmd"
+        Default=""
+        Mode="rw"
+        Type="Path"
+        Display="always"
+        Required="true">/mnt/cache/appdata/steamcmd</Config>
+
+    <Config Name="Server Files"
+        Target="/serverdata/serverfiles"
+        Default=""
+        Mode="rw"
+        Type="Path"
+        Display="always"
+        Required="true">/mnt/cache/appdata/reforger-survival</Config>
+
+    <Config Name="Config Folder"
+        Target="/serverdata/serverfiles/config"
+        Default=""
+        Mode="rw"
+        Type="Path"
+        Display="always"
+        Required="true">/mnt/cache/appdata/reforger-survival/config</Config>
+
+    <Config Name="Profile Folder"
+        Target="/serverdata/serverfiles/profile"
+        Default=""
+        Mode="rw"
+        Type="Path"
+        Display="always"
+        Required="true">/mnt/cache/appdata/reforger-survival/profile</Config>
+
+    <!-- CORE SETTINGS -->
+
+    <Config Name="Game ID"
+        Target="GAME_ID"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="true">1874900</Config>
+
+    <Config Name="Server Name"
+        Target="GAME_NAME"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="true">HouseWolf | Chernarus Survival</Config>
+
+    <Config Name="Server Password"
+        Target="GAME_PASSWORD"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="false"></Config>
+
+    <Config Name="Admin Password"
+        Target="GAME_PASSWORD_ADMIN"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="true">ChangeMe_Admin</Config>
+
+    <Config Name="RCON Password"
+        Target="RCON_PASSWORD"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="true">ChangeMe_Rcon</Config>
+
+    <Config Name="Admin SteamIDs"
+        Target="GAME_ADMINS"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="false"></Config>
+
+    <!-- SCENARIO -->
+
+    <Config Name="Scenario ID"
+        Target="GAME_SCENARIO_ID"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="true">{6F2BE26CD70B719D}Missions/BasicSurvival_ChernarusMinus/BasicSurvival_World.ent.conf</Config>
+
+    <!-- GAMEPLAY -->
+
+    <Config Name="Max Players"
+        Target="GAME_MAX_PLAYERS"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="true">6</Config>
+
+    <Config Name="Server Max FPS"
+        Target="MAX_FPS"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="false">120</Config>
+
+    <Config Name="Game Launch Parameters"
+        Target="GAME_PARAMS"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="false">-config ./config/config.json -profile ./profile</Config>
+
+    <!-- NETWORK -->
+
+    <Config Name="Game Port"
+        Target="GAME_PORT"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="true">2001</Config>
+
+    <Config Name="RCON Port"
+        Target="RCON_PORT"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="true">19999</Config>
+
+    <Config Name="Query Port"
+        Target="A2S_PORT"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="always"
+        Required="true">17777</Config>
+
+    <Config Name="Game Port"
+        Target="2001"
+        Default=""
+        Mode="udp"
+        Type="Port"
+        Display="always"
+        Required="true">2001</Config>
+
+    <Config Name="RCON Port"
+        Target="19999"
+        Default=""
+        Mode="udp"
+        Type="Port"
+        Display="always"
+        Required="true">19999</Config>
+
+    <Config Name="A2S Query Port"
+        Target="17777"
+        Default=""
+        Mode="udp"
+        Type="Port"
+        Display="always"
+        Required="true">17777</Config>
+
+    <!-- MAINTENANCE -->
+
+    <Config Name="Validate Installation"
+        Target="VALIDATE"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="advanced-hide"
+        Required="false"></Config>
+
+    <!-- PERMISSIONS -->
+
+    <Config Name="UID"
+        Target="UID"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="advanced-hide"
+        Required="true">99</Config>
+
+    <Config Name="GID"
+        Target="GID"
+        Default=""
+        Mode=""
+        Type="Variable"
+        Display="advanced-hide"
+        Required="true">100</Config>
+
+</Container>
